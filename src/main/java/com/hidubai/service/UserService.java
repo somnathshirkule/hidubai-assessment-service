@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.hidubai.exceptions.CustomeException;
 import com.hidubai.exceptions.UnauthorizedException;
 import com.hidubai.models.User;
 import com.hidubai.utility.Constants;
@@ -30,6 +31,9 @@ public class UserService {
 			log.debug("Entered into signUp");
 		}
 		User user = (User) Utility.convertJsonToObject(jsonNode, User.class);
+		if(user.getConpassword() != user.getPassword()) {
+			throw new CustomeException("400", "Password and confirm password values are not same.");
+		}
 		if(!storage.addUser(user)) {
 			return Utility.createErrorResponse(Constants.USER_ALREADY_EXIST);
 		}

@@ -41,6 +41,13 @@
       "ENABLED": "Y",
       "MIN_LENGTH":"3",
       "MAX_LENGTH":"10"
+    },
+    "conpassword": {
+      "MANDATORY": "Y",
+      "REGEX": "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+      "ENABLED": "Y",
+      "MIN_LENGTH":"3",
+      "MAX_LENGTH":"20"
     }
   }
 }

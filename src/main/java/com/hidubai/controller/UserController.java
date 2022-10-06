@@ -32,9 +32,8 @@ public class UserController {
 	@PostMapping("/signup")
 	@Validate(apiName = "signup")
 	public ResponseEntity<JsonNode> signUp(@RequestBody JsonNode jsonNode){
-		if(log.isDebugEnabled()) {
-			log.debug("Entered into signUp");
-		}
+		log.debug("Entered into signUp");
+		
 		JsonNode responseNode = userService.signUp(jsonNode);
 		if(log.isDebugEnabled()) {
 			log.debug("exited from signUp");

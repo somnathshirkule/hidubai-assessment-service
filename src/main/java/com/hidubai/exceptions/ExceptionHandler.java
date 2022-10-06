@@ -48,4 +48,13 @@ public class ExceptionHandler {
 		JsonNode node = Utility.createJsonNode(Constants.MSG, unauthorizedException.getErrorMsg());
 		return new ResponseEntity<>(node, HttpStatus.UNAUTHORIZED);
 	}
+	
+	@org.springframework.web.bind.annotation.ExceptionHandler(CustomeException.class)
+	public ResponseEntity<Object> handleApi3Exception(CustomeException customeException){
+		if(log.isErrorEnabled()) {
+			log.error("EXCEPTION OCCURED :: ", customeException);
+		}
+		JsonNode node = Utility.createJsonNode(Constants.MSG, customeException.getErrorMsg());
+		return new ResponseEntity<>(node, HttpStatus.BAD_REQUEST);
+	}
 }
