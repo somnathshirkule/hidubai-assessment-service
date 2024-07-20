@@ -31,7 +31,7 @@ public class UserService {
 			log.debug("Entered into signUp");
 		}
 		User user = (User) Utility.convertJsonToObject(jsonNode, User.class);
-		if(user.getConpassword() != user.getPassword()) {
+		if(!user.getConpassword().equals(user.getPassword())) {
 			throw new CustomeException("400", "Password and confirm password values are not same.");
 		}
 		if(!storage.addUser(user)) {
